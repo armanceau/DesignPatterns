@@ -14,7 +14,7 @@ Date : 23 oct. 2023 - 24 oct. 2023
 ## Documentations 📄
 
 - [Refactoring](https://refactoring.guru/fr)
-- [Justifications du choix des patterns](JustificationsPatterns.docx)
+- [Justifications du choix des patterns](Assets/JustificationsPatterns.docx)
 
 
 ## Author 👨‍💻
