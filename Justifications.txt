@@ -1,3 +1,0 @@
-JUSTIFICATIONS UTILISATIONS DESIGN PATTERNS
-
-- Fabrique (Factory) : j'utilise le design pattern factory pour gérer le choix de l'option suivi par l'élève. Car c'est lors de la création de l'élève que l'on choisi son option
