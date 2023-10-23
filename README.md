@@ -6,9 +6,9 @@ Date : 23 oct. 2023 - 24 oct. 2023
 
 ### Design patterns utilisés :
 
-- Prototype
-- Factory
-- Observer
+- Prototype [🔗](https://refactoring.guru/fr/design-patterns/prototype)
+- Factory [🔗](https://refactoring.guru/fr/design-patterns/prototype)
+- Observer [🔗](https://refactoring.guru/fr/design-patterns/prototype)
 
 
 ## Documentations 📄
