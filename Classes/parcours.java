@@ -9,12 +9,12 @@ public class parcours {
     static ArrayList<cours> ParcoursCyber = new ArrayList<>();
 
     public static void AjouterCours() {
-        Scanner scan = new Scanner(System.in);
+        Scanner scan2 = new Scanner(System.in);
         System.out.println("Insérez le nom de cours à ajouter : ");
-        String nomCours = scan.nextLine();
+        String nomCours = scan2.nextLine();
         cours CoursAjout = cours.creerCours(ParcoursDev.size()+1, nomCours);
         ParcoursDev.add(CoursAjout);
-        scan.close();
+        scan2.close();
     }
 
 }
