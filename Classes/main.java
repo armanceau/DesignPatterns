@@ -34,11 +34,12 @@ public class main {
             System.out.println("2- Ajouter un cours au parcours choisi");
             System.out.println("3- Voir la liste des cours du parcours choisi");
             System.out.println("Quelle option voulez-vous réaliser ? (1, 2, 3)");
-            int option = scan.nextInt();
-            scan.nextLine();
+            String option = scan.nextLine();
+            Integer intOption = Integer.parseInt(option);
+            
 
 
-            switch (option){
+            switch (intOption){
                 case 1 : 
                     System.out.println("Voici la liste des parcours présents à l'EFREI : ");
                     System.out.println("Parcours 1 : Parcours de developpement.");
@@ -78,6 +79,7 @@ public class main {
                         }
                     }
                     scan.close(); 
+                    continuerNavigation = true;
                 break;
             }
             

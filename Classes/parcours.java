@@ -10,9 +10,9 @@ public class parcours {
 
     public static void AjouterCours() {
         Scanner scan2 = new Scanner(System.in);
-        System.out.println("Insérez le nom de cours à ajouter : ");
+        System.out.println("Insérez le nom du cours à ajouter : ");
         String nomCours = scan2.nextLine();
-        cours CoursAjout = cours.creerCours(ParcoursDev.size()+1, nomCours);
+        cours CoursAjout = cours.creerCours(5, nomCours);
         ParcoursDev.add(CoursAjout);
         scan2.close();
     }
