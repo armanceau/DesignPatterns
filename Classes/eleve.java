@@ -13,10 +13,12 @@ public class eleve extends personne{
         return mailEleve;
     } 
     
-    public void setMailEleve(String nom) {
+    public void setMailEleve(String mailEleve) {
         this.mailEleve = mailEleve;
     }
 
-
+    public static eleve creerEleve(int id, String nom, String prenom, String mailEleve) {
+        return new eleve(id, nom, prenom, mailEleve);
+    }
 
 }
