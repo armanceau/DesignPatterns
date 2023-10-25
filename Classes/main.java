@@ -1,5 +1,6 @@
 package Classes;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -12,15 +13,22 @@ public class main {
         Scanner scan = new Scanner(System.in);
         eleve eleve1 = eleve.creerEleve(1, "Manceau", "Arthur", "arthur.manceau@efrei.net");
 
+        parcours InstanceDev = new parcours();
+        List<cours> parcoursDev = InstanceDev.ParcoursDev;
+
+        parcours InstanceCyber = new parcours();
+        List<cours> ParcoursCyber = InstanceCyber.ParcoursCyber;
+
+
         // Déclaration des nouveaux cours
         cours coursJava = cours.creerCours(1, "Java");
         cours coursPHP = cours.creerCours(2, "PHP");
         cours coursDesignPatterns = cours.creerCours(3, "Design patterns");
          
         // Ajout des cours au parcours
-        parcours.ParcoursDev.add(coursJava);
-        parcours.ParcoursDev.add(coursPHP);
-        parcours.ParcoursDev.add(coursDesignPatterns);
+        InstanceDev.ParcoursDev.add(coursJava);
+        InstanceDev.ParcoursDev.add(coursPHP);
+        InstanceDev.ParcoursDev.add(coursDesignPatterns);
 
         System.out.println();
         System.out.println("---------------------------------------------------");
@@ -57,30 +65,46 @@ public class main {
 
                 case 2: 
                     
-                    boolean numAjoutParcoursValide = false;
-                    System.out.println("A quel parcours voulez-vous ajouter un cours ? (1,2)");
-                    Integer parcoursAjout = scan.nextInt();
+                    boolean numAjoutParcoursValide = false;    
                     while(!numAjoutParcoursValide){
-                        switch(parcoursAjout){
-                            case 1 : 
-                                System.out.println("Insérez le nom du cours à ajouter : ");
-                                String nomCours = scan.nextLine();
-                                cours CoursAjout = cours.creerCours(parcours.ParcoursDev.size()+1, nomCours);
-                                parcours.ParcoursDev.add(CoursAjout);
-                                numAjoutParcoursValide = true;
-                            break;
+                        String nomCours = "";
+                        System.out.println("A quel parcours voulez-vous ajouter un cours ? (1,2)");
+                        Integer parcoursAjout = scan.nextInt();
 
-                            case 2 : 
-                                System.out.println("Insérez le nom du cours à ajouter : ");
+                        if(parcoursAjout.equals(1)){
+                            System.out.println("Insérez le nom du cours à ajouter : ");
+                            nomCours = scan.nextLine();
+
+                            while (nomCours.isEmpty()) {
+                                System.out.println("Le nom du cours ne peut pas être vide. Réessayez : ");
                                 nomCours = scan.nextLine();
-                                CoursAjout = cours.creerCours(parcours.ParcoursCyber.size()+1, nomCours);
-                                parcours.ParcoursCyber.add(CoursAjout);
-                                numAjoutParcoursValide = true;
-                            break;
+                            }
 
-                            default : 
-                                System.out.println("Désolé je n'ai pas compris");
-                            break;
+                            cours CoursAjout = cours.creerCours(InstanceDev.ParcoursDev.size() + 1, nomCours);
+                            InstanceDev.ParcoursDev.add(CoursAjout);
+
+                            // Informer les observateurs que le parcours a été mis à jour
+                            InstanceDev.notifyObservers("le parcours Dev");
+                            numAjoutParcoursValide = true;
+                        }
+                        else if (parcoursAjout.equals(2)){
+                            System.out.println("Insérez le nom du cours à ajouter : ");
+                            nomCours = scan.nextLine();
+
+                            while (nomCours.isEmpty()) {
+                                System.out.println("Le nom du cours ne peut pas être vide. Réessayez : ");
+                                nomCours = scan.nextLine();
+                            }
+
+                            cours CoursAjout = cours.creerCours(InstanceCyber.ParcoursCyber.size()+1, nomCours);
+                            InstanceCyber.ParcoursCyber.add(CoursAjout);
+
+                            InstanceCyber.notifyObservers("le parcours Cyber");
+                            numAjoutParcoursValide = true;
+                        }
+                        else{
+
+                            System.out.println("Désolé je n'ai pas compris");
                         }
                     }
                     
@@ -97,30 +121,42 @@ public class main {
                         String numParcours = scan.nextLine();
 
                         if(numParcours.equals("1")){
-                            System.out.println("Voici la liste des cours présents dans le parcours de developpement : ");
+                            System.out.println();
                             // Affichage des cours du parcours : parcoursDev
-                            for (cours cours : parcours.ParcoursDev){
-                                System.out.println("-" + cours.getNom());
+                            if(InstanceDev.ParcoursDev.isEmpty()){   
+                                System.out.println("Il n'y a actuellement aucun cours dans ce parcours.");
                             }
+                            else{
+                                System.out.println("Voici la liste des cours présents dans le parcours de developpement : ");
+                                for (cours cours : InstanceDev.ParcoursDev){
+                                    System.out.println("-" + cours.getNom());
+                                }
+                            }
+                            
                             numParcoursValide = true;
                         }
                         else if (numParcours.equals("2")){
                             // Affichage des cours du parcours : parcoursCyber
-                            System.out.println("Voici la liste des cours présents dans le parcours cyber securite : ");
-                            for (cours cours : parcours.ParcoursCyber){
-                                System.out.println("-" + cours.getNom());
-                            } 
+                            System.out.println();
+                            if(InstanceCyber.ParcoursCyber.isEmpty()){   
+                                System.out.println("Il n'y a actuellement aucun cours dans ce parcours.");
+                            }
+                            else{
+                               System.out.println("Voici la liste des cours présents dans le parcours cyber securite : ");
+                                for (cours cours : InstanceCyber.ParcoursCyber){
+                                    System.out.println("-" + cours.getNom());
+                                }  
+                            }
+                            
                             numParcoursValide = true;
                         }
                         else{
                             System.out.println("Désolé, je n'ai pas compris votre demande. Assurez-vous de bien écrire 1 ou 2.");
                         }
                     }
-                    
-                    // continuerNavigation = true;
                 break;
                 default:
-                System.out.println("Choix incorrect");
+                    System.out.println("Choix incorrect");
                 break;
             }
         }  
